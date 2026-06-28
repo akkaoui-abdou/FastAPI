@@ -2,26 +2,26 @@
 
 ## Sommaire
 
-1. Présentation de FastAPI
-2. Installation
-3. Les bases
-4. Les modèles Pydantic
-5. Les paramètres
-6. Les méthodes HTTP
-7. Gestion des erreurs
-8. Dependency Injection
-9. CRUD
-10. Base de données
-11. Async/Await
-12. Authentification JWT
-13. Upload de fichiers
-14. Pagination
-15. Middleware
-16. CORS
-17. Tests
-18. Questions théoriques
-19. Coding Game complet
-20. Bonnes pratiques
+- [1. Présentation de FastAPI](#1-présentation-de-fastapi)
+- [2. Installation](#2-installation)
+- [3. Les bases](#3-les-bases)
+- [4. Les modèles Pydantic](#4-les-modèles-pydantic)
+- [5. Les paramètres](#5-les-paramètres)
+- [6. Les méthodes HTTP](#6-les-méthodes-http)
+- [7. Gestion des erreurs](#7-gestion-des-erreurs)
+- [8. Dependency Injection](#8-dependency-injection)
+- [9. CRUD](#9-crud)
+- [10. Base de données](#10-base-de-données)
+- [11. Async/Await](#11-asyncawait)
+- [12. Authentification JWT](#12-authentification-jwt)
+- [13. Upload de fichiers](#13-upload-de-fichiers)
+- [14. Pagination](#14-pagination)
+- [15. Middleware](#15-middleware)
+- [16. CORS](#16-cors)
+- [17. Tests](#17-tests)
+- [18. Questions théoriques](#18-questions-théoriques)
+- [19. Coding Game complet](#19-coding-game-complet)
+- [20. Bonnes pratiques](#20-bonnes-pratiques)
 
 ---
 
