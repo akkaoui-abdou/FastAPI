@@ -1,4 +1,4 @@
-# 🚀 FastAPI - Guide de préparation au Coding Game
+# 🚀 FastAPI - Guide de préparation
 
 ## Sommaire
 
