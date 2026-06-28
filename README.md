@@ -1,27 +1,39 @@
+Voici le document corrigé. J'ai configuré les ancres de manière à ce que **chaque lien du sommaire fonctionne correctement** et pointe précisément vers le titre correspondant lorsque tu cliques dessus.
+
+---
+
 # 🚀 FastAPI - Guide de préparation
 
 ## Sommaire
 
-- [1. Présentation de FastAPI](#1-présentation-de-fastapi)
-- [2. Installation](#2-installation)
-- [3. Les bases](#3-les-bases)
-- [4. Les modèles Pydantic](#4-les-modèles-pydantic)
-- [5. Les paramètres](#5-les-paramètres)
-- [6. Les méthodes HTTP](#6-les-méthodes-http)
-- [7. Gestion des erreurs](#7-gestion-des-erreurs)
-- [8. Dependency Injection](#8-dependency-injection)
-- [9. CRUD](#9-crud)
-- [10. Base de données](#10-base-de-données)
-- [11. Async/Await](#11-asyncawait)
-- [12. Authentification JWT](#12-authentification-jwt)
-- [13. Upload de fichiers](#13-upload-de-fichiers)
-- [14. Pagination](#14-pagination)
-- [15. Middleware](#15-middleware)
-- [16. CORS](#16-cors)
-- [17. Tests](#17-tests)
-- [18. Questions théoriques](#18-questions-théoriques)
-- [19. Coding Game complet](#19-coding-game-complet)
-- [20. Bonnes pratiques](#20-bonnes-pratiques)
+* [1. Présentation de FastAPI](#1-quest-ce-que-fastapi-)
+* [2. Installation](#2-installation)
+* [3. Première API (Les bases)](#3-première-api)
+* [4. Les méthodes HTTP](#4-les-méthodes-http)
+* [5. Les modèles Pydantic](#5-les-modèles-pydantic)
+* [6. Path Parameters](#6-path-parameters)
+* [7. Query Parameters](#7-query-parameters)
+* [8. Request Body](#8-request-body)
+* [9. Gestion des erreurs](#9-gestion-des-erreurs)
+* [10. Dependency Injection](#10-dependency-injection)
+* [11. CRUD complet](#11-crud-complet)
+* [12. Base de données](#12-base-de-données)
+* [13. Async / Await](#13-async--await)
+* [14. Authentification JWT](#14-authentification-jwt)
+* [15. Upload de fichiers](#15-upload-de-fichiers)
+* [16. Pagination](#16-pagination)
+* [17. Recherche](#17-recherche)
+* [18. Tri](#18-tri)
+* [19. Middleware](#19-middleware)
+* [20. CORS](#20-cors)
+* [21. Documentation automatique](#21-documentation-automatique)
+* [22. Tests](#22-tests)
+* [23. Les codes HTTP](#23-les-codes-http)
+* [24. Questions fréquentes](#24-questions-fréquentes)
+* [25. Coding Game](#25-coding-game)
+* [26. Architecture recommandée](#26-architecture-recommandée)
+* [27. Conseils pour réussir un Coding Game](#27-conseils-pour-réussir-un-coding-game)
+* [28. Checklist avant de rendre](#28-checklist-avant-de-rendre)
 
 ---
 
@@ -37,17 +49,17 @@ FastAPI est un framework Python moderne permettant de créer des API REST rapide
 
 Il est basé sur :
 
-- Starlette (ASGI)
-- Pydantic (Validation)
-- OpenAPI (Documentation automatique)
+* Starlette (ASGI)
+* Pydantic (Validation)
+* OpenAPI (Documentation automatique)
 
 ### Avantages
 
-- Très rapide
-- Typage Python
-- Documentation Swagger automatique
-- Validation automatique
-- Compatible Async
+* Très rapide
+* Typage Python
+* Documentation Swagger automatique
+* Validation automatique
+* Compatible Async
 
 ---
 
@@ -55,12 +67,14 @@ Il est basé sur :
 
 ```bash
 pip install fastapi uvicorn
+
 ```
 
 Lancer le serveur :
 
 ```bash
 uvicorn main:app --reload
+
 ```
 
 ---
@@ -83,12 +97,14 @@ def root():
     return {
         "message": "Hello World"
     }
+
 ```
 
 Résultat
 
 ```
 GET /
+
 ```
 
 Retour
@@ -97,6 +113,7 @@ Retour
 {
   "message":"Hello World"
 }
+
 ```
 
 ---
@@ -111,6 +128,7 @@ Lire des données.
 @app.get("/users")
 def get_users():
     return []
+
 ```
 
 ---
@@ -123,6 +141,7 @@ Créer une ressource.
 @app.post("/users")
 def create_user():
     return {}
+
 ```
 
 ---
@@ -135,6 +154,7 @@ Modifier entièrement une ressource.
 @app.put("/users/{id}")
 def update_user(id:int):
     pass
+
 ```
 
 ---
@@ -153,6 +173,7 @@ Supprimer une ressource.
 @app.delete("/users/{id}")
 def delete_user(id:int):
     pass
+
 ```
 
 ---
@@ -177,6 +198,7 @@ class User(BaseModel):
     name:str
     age:int
     email:str
+
 ```
 
 Utilisation
@@ -185,6 +207,7 @@ Utilisation
 @app.post("/users")
 def create_user(user:User):
     return user
+
 ```
 
 ---
@@ -199,6 +222,7 @@ class User(BaseModel):
     name:str
     age:int
     phone: Optional[str]=None
+
 ```
 
 ---
@@ -209,6 +233,7 @@ class User(BaseModel):
 class Product(BaseModel):
 
     stock:int=0
+
 ```
 
 ---
@@ -223,12 +248,14 @@ Comment récupérer un identifiant ?
 @app.get("/users/{id}")
 def get_user(id:int):
     return id
+
 ```
 
 URL
 
 ```
 GET /users/15
+
 ```
 
 ---
@@ -239,12 +266,14 @@ GET /users/15
 @app.get("/users")
 def users(age:int):
     return age
+
 ```
 
 URL
 
 ```
 GET /users?age=20
+
 ```
 
 ---
@@ -255,6 +284,7 @@ GET /users?age=20
 @app.post("/users")
 def create(user:User):
     return user
+
 ```
 
 Body
@@ -265,6 +295,7 @@ Body
     "age":25,
     "email":"john@test.com"
 }
+
 ```
 
 ---
@@ -285,6 +316,7 @@ def get_user(id:int):
         status_code=404,
         detail="User not found"
     )
+
 ```
 
 ---
@@ -297,9 +329,9 @@ def get_user(id:int):
 
 Il permet :
 
-- partager une connexion BD
-- vérifier un token
-- réutiliser du code
+* partager une connexion BD
+* vérifier un token
+* réutiliser du code
 
 Exemple
 
@@ -312,6 +344,7 @@ def get_db():
 @app.get("/")
 def root(db=Depends(get_db)):
     return db
+
 ```
 
 ---
@@ -327,6 +360,7 @@ class Book(BaseModel):
     title:str
     author:str
     price:float
+
 ```
 
 ---
@@ -335,30 +369,35 @@ Créer
 
 ```python
 @app.post("/books")
+
 ```
 
 Lire
 
 ```python
 @app.get("/books")
+
 ```
 
 Lire un livre
 
 ```python
 @app.get("/books/{id}")
+
 ```
 
 Modifier
 
 ```python
 @app.put("/books/{id}")
+
 ```
 
 Supprimer
 
 ```python
 @app.delete("/books/{id}")
+
 ```
 
 ---
@@ -367,19 +406,20 @@ Supprimer
 
 Les plus utilisées :
 
-- SQLite
-- PostgreSQL
-- MySQL
+* SQLite
+* PostgreSQL
+* MySQL
 
 ORM :
 
-- SQLAlchemy
-- SQLModel
+* SQLAlchemy
+* SQLModel
 
 Connexion
 
 ```python
 engine=create_engine(DATABASE_URL)
+
 ```
 
 ---
@@ -392,12 +432,14 @@ Quelle différence entre
 
 ```python
 def hello():
+
 ```
 
 et
 
 ```python
 async def hello():
+
 ```
 
 ## Réponse
@@ -406,9 +448,9 @@ async permet de gérer plusieurs requêtes simultanément.
 
 À utiliser pour
 
-- API externes
-- Base de données async
-- Fichiers
+* API externes
+* Base de données async
+* Fichiers
 
 ---
 
@@ -420,6 +462,7 @@ Créer
 
 ```
 POST /login
+
 ```
 
 Retour
@@ -428,18 +471,21 @@ Retour
 {
 "access_token":"xxxxx"
 }
+
 ```
 
 Puis protéger
 
 ```
 GET /profile
+
 ```
 
 avec
 
 ```
 Authorization: Bearer TOKEN
+
 ```
 
 ---
@@ -452,6 +498,7 @@ from fastapi import UploadFile
 @app.post("/upload")
 def upload(file:UploadFile):
     return file.filename
+
 ```
 
 ---
@@ -462,12 +509,14 @@ Exemple
 
 ```
 GET /products?page=1&size=20
+
 ```
 
 ```python
 @app.get("/products")
 def products(page:int=1,size:int=20):
     pass
+
 ```
 
 ---
@@ -476,10 +525,12 @@ def products(page:int=1,size:int=20):
 
 ```
 GET /products?category=phone
+
 ```
 
 ```
 GET /products?price=500
+
 ```
 
 ---
@@ -488,6 +539,7 @@ GET /products?price=500
 
 ```
 GET /products?sort=price
+
 ```
 
 ---
@@ -505,6 +557,7 @@ async def timer(request, call_next):
     response = await call_next(request)
 
     return response
+
 ```
 
 ---
@@ -525,6 +578,7 @@ app.add_middleware(
     allow_headers=["*"]
 
 )
+
 ```
 
 ---
@@ -535,12 +589,14 @@ Swagger
 
 ```
 /docs
+
 ```
 
 ReDoc
 
 ```
 /redoc
+
 ```
 
 ---
@@ -551,6 +607,7 @@ Installation
 
 ```bash
 pip install pytest
+
 ```
 
 Exemple
@@ -565,6 +622,7 @@ def test_root():
     response=client.get("/")
 
     assert response.status_code==200
+
 ```
 
 ---
@@ -572,16 +630,16 @@ def test_root():
 # 23. Les codes HTTP
 
 | Code | Signification |
-|-------|---------------|
-|200|OK|
-|201|Created|
-|204|No Content|
-|400|Bad Request|
-|401|Unauthorized|
-|403|Forbidden|
-|404|Not Found|
-|422|Validation Error|
-|500|Internal Server Error|
+| --- | --- |
+| 200 | OK |
+| 201 | Created |
+| 204 | No Content |
+| 400 | Bad Request |
+| 401 | Unauthorized |
+| 403 | Forbidden |
+| 404 | Not Found |
+| 422 | Validation Error |
+| 500 | Internal Server Error |
 
 ---
 
@@ -605,11 +663,11 @@ PATCH modifie uniquement certains champs.
 
 Une API qui respecte les principes REST :
 
-- GET
-- POST
-- PUT
-- PATCH
-- DELETE
+* GET
+* POST
+* PUT
+* PATCH
+* DELETE
 
 ---
 
@@ -629,9 +687,9 @@ DELETE
 
 ## Pourquoi utiliser Pydantic ?
 
-- Validation
-- Sérialisation
-- Documentation automatique
+* Validation
+* Sérialisation
+* Documentation automatique
 
 ---
 
@@ -639,9 +697,9 @@ DELETE
 
 Pour injecter des dépendances :
 
-- Base de données
-- Authentification
-- Services
+* Base de données
+* Authentification
+* Services
 
 ---
 
@@ -653,9 +711,9 @@ Pour améliorer les performances sur les opérations d'entrée/sortie (I/O).
 
 ## Que génère automatiquement FastAPI ?
 
-- Swagger
-- OpenAPI
-- Documentation JSON
+* Swagger
+* OpenAPI
+* Documentation JSON
 
 ---
 
@@ -673,6 +731,7 @@ title
 description
 completed
 created_at
+
 ```
 
 Fonctionnalités
@@ -689,14 +748,14 @@ Fonctionnalités
 
 Bonus
 
-- Pagination
-- Recherche
-- Tri
-- Validation
-- SQLite
-- SQLAlchemy
-- JWT
-- Tests unitaires
+* Pagination
+* Recherche
+* Tri
+* Validation
+* SQLite
+* SQLAlchemy
+* JWT
+* Tests unitaires
 
 ---
 
@@ -738,30 +797,31 @@ app/
 │
 
 └── tests/
+
 ```
 
 ---
 
 # 27. Conseils pour réussir un Coding Game
 
-- Lire entièrement l'énoncé avant de coder.
-- Commencer par les endpoints les plus simples.
-- Utiliser les modèles Pydantic.
-- Gérer les erreurs avec `HTTPException`.
-- Tester régulièrement via Swagger (`/docs`).
-- Respecter les codes HTTP appropriés.
-- Structurer le projet dès le début.
-- Ajouter des commentaires uniquement si nécessaire.
-- Garder un code lisible et modulaire.
+* Lire entièrement l'énoncé avant de coder.
+* Commencer par les endpoints les plus simples.
+* Utiliser les modèles Pydantic.
+* Gérer les erreurs avec `HTTPException`.
+* Tester régulièrement via Swagger (`/docs`).
+* Respecter les codes HTTP appropriés.
+* Structurer le projet dès le début.
+* Ajouter des commentaires uniquement si nécessaire.
+* Garder un code lisible et modulaire.
 
 ---
 
 # 28. Checklist avant de rendre
 
-- [ ] L'application démarre.
-- [ ] Tous les endpoints fonctionnent.
-- [ ] Validation des données.
-- [ ] Gestion des erreurs.
-- [ ] Documentation Swagger disponible.
-- [ ] Tests passants (si demandés).
-- [ ] Code propre et organisé.
+* [ ] L'application démarre.
+* [ ] Tous les endpoints fonctionnent.
+* [ ] Validation des données.
+* [ ] Gestion des erreurs.
+* [ ] Documentation Swagger disponible.
+* [ ] Tests passants (si demandés).
+* [ ] Code propre et organisé.
