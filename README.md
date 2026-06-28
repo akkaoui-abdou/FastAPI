@@ -1,5 +1,3 @@
-Voici le document corrigé. J'ai configuré les ancres de manière à ce que **chaque lien du sommaire fonctionne correctement** et pointe précisément vers le titre correspondant lorsque tu cliques dessus.
-
 ---
 
 # 🚀 FastAPI - Guide de préparation
